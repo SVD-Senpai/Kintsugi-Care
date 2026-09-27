@@ -1,0 +1,156 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --font-sans: 'Plus Jakarta Sans', 'Noto Sans Devanagari', system-ui, -apple-system, sans-serif;
+    --color-bg-primary: #fbf9f4;
+    --color-primary: #216d53;
+    --color-primary-deep: #164e3b;
+    --color-primary-soft: #eaf3ee;
+    --color-urgent: #dc2626;
+    --color-attention: #d97706;
+    --color-healthy: #16a34a;
+    --color-ink: #1c2e26;
+    --color-ink-muted: #64748b;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    background-color: #fbf9f4;
+    color: #1c2e26;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #f1efe9;
+}
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* ==========================================================================
+   GIS DISEASE SURVEILLANCE RADAR PULSE ANIMATIONS
+   Creates the multi-ring expanding circular radar alert waves for high-risk clusters
+   ========================================================================== */
+
+@keyframes disease-radar-wave {
+  0% {
+    transform: scale(0.6);
+    opacity: 0.9;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(3.2);
+    opacity: 0;
+  }
+}
+
+@keyframes disease-radar-wave-delayed {
+  0% {
+    transform: scale(0.6);
+    opacity: 0.9;
+  }
+  50% {
+    opacity: 0.45;
+  }
+  100% {
+    transform: scale(3.2);
+    opacity: 0;
+  }
+}
+
+@keyframes disease-marker-glow {
+  0%, 100% {
+    box-shadow: 0 0 10px rgba(220, 38, 38, 0.7), 0 0 20px rgba(220, 38, 38, 0.4);
+    transform: scale(1);
+  }
+  50% {
+    box-shadow: 0 0 18px rgba(220, 38, 38, 0.9), 0 0 32px rgba(220, 38, 38, 0.6);
+    transform: scale(1.08);
+  }
+}
+
+@keyframes amber-marker-glow {
+  0%, 100% {
+    box-shadow: 0 0 8px rgba(217, 119, 6, 0.6);
+    transform: scale(1);
+  }
+  50% {
+    box-shadow: 0 0 14px rgba(217, 119, 6, 0.8);
+    transform: scale(1.05);
+  }
+}
+
+/* Radar Wave Classes */
+.radar-ring-1 {
+  animation: disease-radar-wave 2.8s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+}
+
+.radar-ring-2 {
+  animation: disease-radar-wave-delayed 2.8s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+  animation-delay: 0.9s;
+}
+
+.radar-ring-3 {
+  animation: disease-radar-wave 2.8s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+  animation-delay: 1.8s;
+}
+
+.marker-pulse-urgent {
+  animation: disease-marker-glow 2s infinite ease-in-out;
+}
+
+.marker-pulse-attention {
+  animation: amber-marker-glow 2s infinite ease-in-out;
+}
+
+/* Leaflet Custom Marker & Popup Overrides */
+.leaflet-div-icon {
+  background: transparent !important;
+  border: none !important;
+}
+
+.leaflet-popup-content-wrapper {
+  background: #ffffff !important;
+  color: #1c2e26 !important;
+  border-radius: 1rem !important;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1) !important;
+  padding: 0 !important;
+  border: 1px solid #e2e8f0 !important;
+}
+
+.leaflet-popup-content {
+  margin: 0 !important;
+  line-height: 1.5 !important;
+}
+
+.leaflet-popup-tip-container {
+  overflow: visible;
+}
+
+.leaflet-popup-tip {
+  background: #ffffff !important;
+  box-shadow: 0 3px 14px rgba(0,0,0,0.15) !important;
+}
+
+/* Hide leaflet attribution in clinical GIS view if needed */
+.leaflet-control-attribution {
+  font-size: 10px !important;
+  background: rgba(255, 255, 255, 0.8) !important;
+  border-radius: 4px !important;
+  margin: 4px !important;
+}
