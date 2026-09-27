@@ -43,7 +43,7 @@ This creates a gap between **the first reported symptom and coordinated action**
 
 ---
 
-# 💡 Our Solution — Kintsugi Care
+# 💡 Our Solution - Kintsugi Care
 
 Kintsugi Care creates a connected livestock-health ecosystem:
 
